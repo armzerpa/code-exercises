@@ -1,11 +1,10 @@
 package exercises
 
 import (
-	"fmt"
 	"math/rand"
 )
 
-func partition(nums []int, left, right int) int {
+func reArrengeArrayPartition(nums []int, left, right int) int {
 	pivot := nums[right]
 	pIndex := left
 	for i := left; i < right; i++ {
@@ -15,38 +14,38 @@ func partition(nums []int, left, right int) int {
 		}
 	}
 	nums[pIndex], nums[right] = nums[right], nums[pIndex]
-	fmt.Println("nums4: ", nums)
+	//fmt.Println("nums4: ", nums)
 	return pIndex
 }
 
-func quickselect(nums []int, left, right, k int) int {
-	fmt.Println("left: ", left, "right: ", right, "k: ", k)
-	fmt.Println("nums: ", nums)
+func quickSelection(nums []int, left, right, k int) int {
+	//fmt.Println("left: ", left, "right: ", right, "k: ", k)
+	//fmt.Println("nums: ", nums)
 	if left == right {
 		return nums[left]
 	}
 
 	// Choose a random pivot index
 	pivotIndex := left + rand.Intn(right-left+1)
-	fmt.Println("pivotIndex: ", pivotIndex)
+	//fmt.Println("pivotIndex: ", pivotIndex)
 	nums[pivotIndex], nums[right] = nums[right], nums[pivotIndex]
-	fmt.Println("nums2: ", nums)
+	//fmt.Println("nums2: ", nums)
 
 	// Partition the array
-	pIndex := partition(nums, left, right)
-	fmt.Println("pIndex3: ", pIndex)
-	fmt.Println("nums3: ", nums)
+	pIndex := reArrengeArrayPartition(nums, left, right)
+	//fmt.Println("pIndex3: ", pIndex)
+	//fmt.Println("nums3: ", nums)
 
 	// Determine whether the k-th largest is on the left or right
 	if k == pIndex {
 		return nums[k]
 	} else if k < pIndex {
-		return quickselect(nums, left, pIndex-1, k)
+		return quickSelection(nums, left, pIndex-1, k)
 	} else {
-		return quickselect(nums, pIndex+1, right, k)
+		return quickSelection(nums, pIndex+1, right, k)
 	}
 }
 
 func FindKthLargest(nums []int, k int) int {
-	return quickselect(nums, 0, len(nums)-1, len(nums)-k)
+	return quickSelection(nums, 0, len(nums)-1, len(nums)-k)
 }
