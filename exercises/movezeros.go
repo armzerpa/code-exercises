@@ -1,6 +1,6 @@
 package exercises
 
-func movezeros(nums []int) {
+func moveZeroes(nums []int) {
 	// Initialize the position where non-zero elements should be placed
 	nonZeroIndex := 0
 
