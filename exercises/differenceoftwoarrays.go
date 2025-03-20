@@ -6,6 +6,7 @@ package exercises
 // Input: nums1 = [1,2,3,3], nums2 = [1,1,2,2]
 // Output: [[3],[]]
 func findDifference(nums1 []int, nums2 []int) [][]int {
+
 	var res1 []int
 	for i1 := range nums1 {
 		v1 := nums1[i1]
